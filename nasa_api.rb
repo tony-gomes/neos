@@ -6,6 +6,7 @@ Figaro.application = Figaro::Application.new(environment: 'production', path: Fi
 Figaro.load
 
 class NasaApi
+  attr_reader :formatted_neos_data, :isolate_date_matches
 
   def initialize(date)
     @date = date
@@ -31,11 +32,11 @@ class NasaApi
   end
 
   def formatted_neos_data
-    isolate_date_matches.map do |astroid|
+    isolate_date_matches.map do |asteroid|
       {
-        name: astroid[:name],
-        diameter: "#{astroid[:estimated_diameter][:feet][:estimated_diameter_max].to_i} ft",
-        miss_distance: "#{astroid[:close_approach_data][0][:miss_distance][:miles].to_i} miles"
+        name: asteroid[:name],
+        diameter: "#{asteroid[:estimated_diameter][:feet][:estimated_diameter_max].to_i} ft",
+        miss_distance: "#{asteroid[:close_approach_data][0][:miss_distance][:miles].to_i} miles"
       }
     end
   end

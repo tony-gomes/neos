@@ -3,7 +3,6 @@ require './lib/near_earth_objects'
 
 class NearEarthObjectsTest < Minitest::Test
   def test_a_date_returns_a_list_of_neos
-    binding.pry
     results1 = NearEarthObjects.new('2019-03-30').neos_formatted
     assert_equal 12, results1.count
     assert_equal '(2019 GD4)', results1.first[:name]
